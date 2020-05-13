@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm">
+  <div class="modal-body mx-3">
+    <div class="md-form mb-5">
+      <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+      <input type="text" id="username" formControlName="username" class="form-control" mdbInput mdbValidate>
+      <label for="username">Логин</label>
+      <mdb-error *ngIf="isMandatoryInvalid('username')">
+        Логин не может быть пустым
+      </mdb-error>
+    </div>
+
+    <div class="md-form mb-4">
+      <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+      <input type="password" id="password" formControlName="password" class="form-control" mdbInput mdbValidate>
+      <label for="password">Пароль</label>
+      <mdb-error *ngIf="isMandatoryInvalid('password')">
+        Пароль не может быть пустым
+      </mdb-error>
+    </div>
+
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <button mdbBtn color="default" class="waves-light" mdbWavesEffect (click)="confirmOperation()">Войти</button>
+  </div>
+</form>

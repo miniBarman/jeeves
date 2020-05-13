@@ -1,0 +1,263 @@
+# Use the following comment template to separate new paths groups
+# With correct indentation and empty lines above and below
+# <NAME> ----------------------------------------------------------
+
+openapi: 3.0.2
+info:
+  title: Jeeves
+  description: This is the api for the Jeeves web-service
+  version: v1
+  contact:
+    name: mini_barman
+    email: stovgsb06@mail.ru
+servers:
+  - url: http://localhost:8888/service/v2
+    description: "Local server"
+  - url: http://10.53.31.50:8888/service/v2
+    description: "Dev server"
+  - url: http://10.53.26.47:8888/service/v2
+    description: "Prod server"
+tags:
+  - name: Auth
+    description: "Operations about Auth"
+  - name: User
+    description: "Operations about User"
+  - name: User Roles
+    description: "Operations about User Roles"
+paths:
+
+  # AUTH ----------------------------------------------------------
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: "Register a new user"
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          description: "Received registred user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserState"
+  /auth/login:
+    post:
+      operationId: loginUser
+      summary: "Logs user into the system"
+      tags:
+        - Auth
+      requestBody:
+        description: "The user object for login"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserAuth"
+      responses:
+        '200':
+          description: "Received logged in user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserState"
+  /auth/logout:
+    get:
+      operationId: logoutUser
+      summary: "Logs out currently logged in user session"
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: "Ok response. You are now logged out"
+
+  # COCTAILS
+
+  /coctails:
+    get:
+      tags:
+        - Coctail
+      summary: Retrieves existent coctails
+      operationId: getCoctails
+      responses:
+        '200':
+          description: "List of all coctails"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Coctail"
+    post:
+      tags:
+        - Coctail
+      summary: Creates a coctails
+      operationId: createCoctails
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Coctail"
+      responses:
+        '200':
+          description: "Created coctail"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Coctail"
+
+
+  # INGREDIENTS
+
+  /ingredients:
+    get:
+      tags:
+        - Ingredient
+      summary: Retrieves existent ingredients
+      operationId: getIngredients
+      responses:
+        '200':
+          description: "List of all ingredients"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Ingredient"
+
+# MODEL ----------------------------------------------------------------
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        type:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+        - type
+    UserAuth:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    UserState:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        token:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    Coctail:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        recipe:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        author:
+          $ref: "#/components/schemas/User"
+        coctailIngredients:
+          type: array
+          items:
+            $ref: "#/components/schemas/CoctailIngredient"
+    CoctailIngredient:
+      type: object
+      properties:
+        id:
+          type: integer
+        coctail:
+          $ref: "#/components/schemas/Coctail"
+        ingredient:
+          $ref: "#/components/schemas/Ingredient"
+        volume:
+          type: number
+        unit:
+          type: string
+    Ingredient:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        author:
+          $ref: "#/components/schemas/User"
+        coctailIngredients:
+          type: array
+          items:
+            $ref: "#/components/schemas/CoctailIngredient"
+  examples:
+    login-success:
+      value:
+        code: 0
+        type: token
+        message: Bearer sdfjoasfp9843uf394f3q4f3....
+  responses:
+    NotFound:
+      description: "The specified resource was not found"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponse"
+    Unauthorised:
+      description: "Unauthorised"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponse"
+    BadRequest:
+      description: "Invalid syntax"
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponse"

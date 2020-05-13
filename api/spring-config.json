@@ -1,0 +1,8 @@
+{
+  "modelPackage": "com.jeeves.openapi.dto",
+  "apiPackage": "com.jeeves.openapi.api",
+  "sourceFolder": "source",
+  "interfaceOnly": "true",
+  "useTags": "true",
+  "serializableModel": "true"
+}

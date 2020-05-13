@@ -1,0 +1,50 @@
+<form [formGroup]="registerForm">
+  <div class="modal-body mx-3">
+    <div class="md-form mb-4">
+      <mdb-icon fas icon="user" class="prefix grey-text"></mdb-icon>
+      <input type="text" id="username" formControlName="username" class="form-control" mdbInput mdbValidate>
+      <label for="username">Логин</label>
+      <mdb-error *ngIf="isMandatoryInvalid('username')">
+        Логин не может быть пустым
+      </mdb-error>
+    </div>
+
+    <div class="md-form mb-4">
+      <mdb-icon fas icon="envelope" class="prefix grey-text"></mdb-icon>
+      <input type="email" id="email" formControlName="email" class="form-control" mdbInput mdbValidate>
+      <label for="email">E-mail</label>
+      <mdb-error *ngIf="isMandatoryInvalid('email')">
+        E-mail не может быть пустым
+      </mdb-error>
+    </div>
+
+    <div class="md-form mb-4">
+      <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+      <input type="password" id="password" formControlName="password" class="form-control" mdbInput mdbValidate>
+      <label for="password">Пароль</label>
+      <mdb-error *ngIf="isMandatoryInvalid('password')">
+        Пароль не может быть пустым
+      </mdb-error>
+    </div>
+
+    <div class="md-form mb-4">
+      <mdb-icon fas icon="lock" class="prefix grey-text"></mdb-icon>
+      <input type="password" id="secondPassword" formControlName="secondPassword" class="form-control" mdbInput mdbValidate>
+      <label for="secondPassword">Подтверждение пароля</label>
+      <mdb-error *ngIf="isMandatoryInvalid('secondPassword')">
+        Подтверждение пароля не может быть пустым
+      </mdb-error>
+      <mdb-error *ngIf="isPasswordMatchError()">
+        Пароль не совпадает
+      </mdb-error>
+    </div>
+
+  </div>
+
+  <div class="modal-footer d-flex justify-content-center">
+    <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect (click)="confirmOperation()">
+    Зарегистрироваться
+    </button>
+  </div>
+
+</form>
