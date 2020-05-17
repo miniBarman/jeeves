@@ -26,6 +26,13 @@ export interface IngredientServiceInterface {
     
 
     /**
+     * Get ingredient by id
+     * 
+     * @param ingredientId Ingredient id to retrieve
+     */
+    getIngredientById(ingredientId: number, extraHttpRequestParams?: any): Observable<Ingredient>;
+
+    /**
      * Retrieves existent ingredients
      * 
      */

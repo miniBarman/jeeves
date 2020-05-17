@@ -26,7 +26,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-04-05T18:40:53.589811800+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-17T18:39:11.880040700+03:00[Europe/Moscow]")
 
 @Validated
 @Api(value = "Ingredient", description = "the Ingredient API")
@@ -35,6 +35,27 @@ public interface IngredientApi {
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
+
+    @ApiOperation(value = "Get ingredient by id", nickname = "getIngredientById", notes = "", response = Ingredient.class, tags={ "Ingredient", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "return Void", response = Ingredient.class) })
+    @RequestMapping(value = "/ingredients/{ingredientId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<Ingredient> getIngredientById(@ApiParam(value = "Ingredient id to retrieve",required=true) @PathVariable("ingredientId") Integer ingredientId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     @ApiOperation(value = "Retrieves existent ingredients", nickname = "getIngredients", notes = "", response = Ingredient.class, responseContainer = "List", tags={ "Ingredient", })
     @ApiResponses(value = { 

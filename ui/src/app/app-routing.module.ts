@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainPageComponent} from "./layout/main-page/main-page.component";
 import {AllCoctailsPageComponent} from "./layout/all-coctails-page/all-coctails-page.component";
 import {AllIngredientsPageComponent} from "./layout/all-ingredients-page/all-ingredients-page.component";
+import {IngredientPageComponent} from "./layout/ingredient-page/ingredient-page.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'all-ingredients-page',
     component: AllIngredientsPageComponent,
+  },
+  {
+    path: 'ingredient-page/:id',
+    component: IngredientPageComponent,
   },
   // {
   //   path: 'auth',

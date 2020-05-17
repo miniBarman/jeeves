@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * ModelApiResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-04-05T18:40:53.589811800+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-17T18:39:11.880040700+03:00[Europe/Moscow]")
 
 public class ModelApiResponse  implements Serializable {
   private static final long serialVersionUID = 1L;

@@ -33,4 +33,10 @@ public class IngredientApiController implements IngredientApi {
         List<IngredientEntity> ingredients = ingredientRepository.findAll();
         return new ResponseEntity<>(ingredient4IngredientsDtoBiConverter.entityListToDtoList(ingredients), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Ingredient> getIngredientById(Integer ingredientId) {
+        IngredientEntity ingredient = ingredientRepository.getOne(ingredientId);
+        return new ResponseEntity<>(ingredient4IngredientsDtoBiConverter.entityToDto(ingredient), HttpStatus.OK);
+    }
 }

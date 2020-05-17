@@ -129,6 +129,26 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Ingredient"
+  /ingredients/{ingredientId}:
+    get:
+      operationId: getIngredientById
+      summary: "Get ingredient by id"
+      tags:
+        - Ingredient
+      parameters:
+        - in: path
+          required: true
+          name: ingredientId
+          description: "Ingredient id to retrieve"
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "return Void"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Ingredient"
 
 # MODEL ----------------------------------------------------------------
 

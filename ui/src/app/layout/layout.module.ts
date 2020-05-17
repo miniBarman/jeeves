@@ -10,11 +10,21 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AllCoctailsPageComponent } from './all-coctails-page/all-coctails-page.component';
 import { AllIngredientsPageComponent } from './all-ingredients-page/all-ingredients-page.component';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
+import { IngredientPageComponent } from './ingredient-page/ingredient-page.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent, CoctailListComponent, CoctailComponent, MainPageComponent, AllCoctailsPageComponent, AllIngredientsPageComponent, IngredientListComponent],
+  declarations: [
+    NavbarComponent,
+    CoctailListComponent,
+    CoctailComponent,
+    MainPageComponent,
+    AllCoctailsPageComponent,
+    AllIngredientsPageComponent,
+    IngredientListComponent,
+    IngredientPageComponent
+  ],
   exports: [
     NavbarComponent,
     CoctailListComponent

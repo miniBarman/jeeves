@@ -53,6 +53,42 @@ export class IngredientService implements IngredientServiceInterface {
 
 
     /**
+     * Get ingredient by id
+     * @param ingredientId Ingredient id to retrieve
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getIngredientById(ingredientId: number, observe?: 'body', reportProgress?: boolean): Observable<Ingredient>;
+    public getIngredientById(ingredientId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Ingredient>>;
+    public getIngredientById(ingredientId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Ingredient>>;
+    public getIngredientById(ingredientId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (ingredientId === null || ingredientId === undefined) {
+            throw new Error('Required parameter ingredientId was null or undefined when calling getIngredientById.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        return this.httpClient.get<Ingredient>(`${this.configuration.basePath}/ingredients/${encodeURIComponent(String(ingredientId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
      * Retrieves existent ingredients
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

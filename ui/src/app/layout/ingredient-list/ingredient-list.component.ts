@@ -24,7 +24,7 @@ export class IngredientListComponent implements OnInit {
   refreshData() {
     this.ingredientService.getIngredients().subscribe(results => {
       if(results.length > 0) {
-        results.forEach(x => x.image = x.image.replace('80', '95'));
+        results.forEach(x => x.image = x.image.replace('/full/', '/95/'));
         this.ingredients = results.reduce((prev, cur, i, a) => !(i % this.colsNum) ? prev.concat([a.slice(i, i + this.colsNum)]) : prev, []);
       }
     })
