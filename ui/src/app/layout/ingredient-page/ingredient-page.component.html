@@ -1,13 +1,9 @@
-<div class="card mb-1 box-shadow" *ngIf="ingredient">
-  <div class="card-header">
+<div class="mb-1" *ngIf="ingredient">
     <h3>
       {{ingredient.name}}
     </h3>
-  </div>
-  <div class="card-body">
     <img class="rounded mx-auto d-block mb-3" [src]="ingredient.image">
     <div>
       {{ingredient.description}}
     </div>
-  </div>
 </div>
