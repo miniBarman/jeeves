@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Store, StoreConfig } from "@datorama/akita";
-import * as storage from "../storage";
 
 export type SessionState = {
   token: string;
@@ -11,7 +10,7 @@ export function createInitialSessionState(): SessionState {
   return {
     token: null,
     name: null,
-    ...storage.getSession(),
+    ...getSession(),
   }
 }
 
@@ -24,11 +23,24 @@ export class SessionStore extends Store<SessionState> {
 
   login(session: SessionState) {
     this.update(session);
-    storage.saveSession(session);
+    saveSession(session);
   }
 
   logout() {
-    storage.clearSession();
+    clearSession();
     this.update(createInitialSessionState());
   }
+}
+
+export function getSession() {
+  const session = localStorage.getItem('session');
+  return session ? JSON.parse(session) : {};
+}
+
+export function saveSession( session ) {
+  localStorage.setItem('session', JSON.stringify(session));
+}
+
+export function clearSession() {
+  localStorage.removeItem('session');
 }

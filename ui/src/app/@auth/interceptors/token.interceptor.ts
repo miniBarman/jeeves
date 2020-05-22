@@ -10,7 +10,6 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import * as storage from "../storage";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -19,7 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = storage.getToken();
+    const token = this.getToken();
     if (token) {
       request = request.clone({
         setHeaders: {
@@ -54,6 +53,16 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         return throwError(error);
       }));
+  }
+
+  getToken() {
+    const session = this.getSession();
+    return session ? session.token : '';
+  }
+
+  getSession() {
+    const session = localStorage.getItem('session');
+    return session ? JSON.parse(session) : {};
   }
 
 }

@@ -13,7 +13,7 @@ info:
 servers:
   - url: http://localhost:8888/service/v2
     description: "Local server"
-  - url: http://185.224.139.80:80/service/v2
+  - url: http://185.224.139.80:8888/service/v2
     description: "Prod server"
 tags:
   - name: Auth

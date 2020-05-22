@@ -32,3 +32,5 @@ out/
 .vscode/
 
 api/out
+ui/src/app/@api-module
+src/main/java/com/jeeves/openapi
