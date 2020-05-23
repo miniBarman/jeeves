@@ -1,16 +1,8 @@
-<mdb-card (mouseover)="isTextContent = true" (mouseleave)="isTextContent = false">
+<mdb-card class="holder">
 
-  <div *ngIf="!isTextContent" class="view overlay card-content" mdbWavesEffect>
+  <div class="view overlay card-content" mdbWavesEffect>
     <mdb-card-img src="/assets/images/coctail.jpg"></mdb-card-img>
   </div>
-
-  <mdb-card-text class="card-content" *ngIf="isTextContent">
-    <div class="mt-3 ml-3 mr-3">
-      <div *ngFor="let coctailIngredient of coctail.coctailIngredients">
-        <b>{{coctailIngredient.ingredient.name}}</b>: {{coctailIngredient.volume}} {{coctailIngredient.unit}}
-      </div>
-    </div>
-  </mdb-card-text>
 
   <mdb-card-body cascade="true" class="text-center">
     <h4 class="card-title">
@@ -18,4 +10,30 @@
     </h4>
   </mdb-card-body>
 
+  <mdb-card class="block">
+
+    <mdb-card-body cascade="true" class="text-center">
+      <h4 class="card-title mb-0">
+        <strong>{{coctail.name}}</strong>
+      </h4>
+    </mdb-card-body>
+
+    <mdb-card-text>
+      <div class="ml-3 mr-3">
+        <div *ngFor="let coctailIngredient of coctail.coctailIngredients">
+          <b>
+            <a [href]="'/ingredient-page/' + coctailIngredient.id">
+              {{coctailIngredient.ingredient.name}}
+            </a>
+          </b>: {{coctailIngredient.volume}} {{coctailIngredient.unit}}
+        </div>
+      </div>
+    </mdb-card-text>
+
+
+
+  </mdb-card>
+
 </mdb-card>
+
+

@@ -3,8 +3,7 @@
 
     <div class="row" *ngFor="let ingredientRow of ingredients">
       <div class="col pl-0 pr-0" *ngFor="let ingredient of ingredientRow">
-        <div class="card mb-1 box-shadow ingredient-ico">
-<!--          <a routerLink="/ingredient-page/" routerLinkActive="active-link">-->
+        <div class="card mb-1 box-shadow ingredient-ico zoom">
           <a [href]="'/ingredient-page/' + ingredient.id">
             <img [src]="ingredient.image">
           </a>
