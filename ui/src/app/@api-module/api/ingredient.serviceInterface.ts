@@ -13,6 +13,7 @@ import { HttpHeaders }                                       from '@angular/comm
 
 import { Observable }                                        from 'rxjs';
 
+import { GroupedIngredients } from '../model/groupedIngredients';
 import { Ingredient } from '../model/ingredient';
 
 
@@ -37,5 +38,11 @@ export interface IngredientServiceInterface {
      * 
      */
     getIngredients(extraHttpRequestParams?: any): Observable<Array<Ingredient>>;
+
+    /**
+     * Retrieves existent ingredients
+     * 
+     */
+    getIngredientsInGroups(extraHttpRequestParams?: any): Observable<Array<GroupedIngredients>>;
 
 }

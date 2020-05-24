@@ -1,6 +1,7 @@
 export * from './apiResponse';
 export * from './coctail';
 export * from './coctailIngredient';
+export * from './groupedIngredients';
 export * from './ingredient';
 export * from './role';
 export * from './user';

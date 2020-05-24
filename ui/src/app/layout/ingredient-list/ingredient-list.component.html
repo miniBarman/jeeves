@@ -1,24 +1,26 @@
 <div class="py-5">
   <div class="container">
 
-    <div class="row" *ngFor="let ingredientRow of ingredients">
-      <div class="col pl-0 pr-0" *ngFor="let ingredient of ingredientRow">
+    <div *ngFor="let group of ingredientsGroups; first as isFirst">
+      <h2 [class]="isFirst ? 'mt-0' : 'mt-5'" style="text-align: center">{{group.name}}</h2>
+      <div class="row justify-content-center" *ngFor="let ingredientRow of group.ingredients; last as isLast">
+        <div class="pl-0 pr-0" *ngFor="let ingredient of ingredientRow">
 
-        <div class="card mb-1 box-shadow ingredient-ico">
-          <a [href]="'/ingredient-page/' + ingredient.id">
-            <img [src]="'/assets/images/ingredients/95/' + ingredient.image">
-          </a>
-
-          <div class="card box-shadow descr text-center">
+          <div class="card box-shadow ingredient-ico">
             <a [href]="'/ingredient-page/' + ingredient.id">
-              <img [src]="'/assets/images/ingredients/125/' + ingredient.image" class="mb-1 mt-1">
+              <img [src]="'/assets/images/ingredients/95/' + ingredient.image">
             </a>
-            <strong>{{ingredient.name}}</strong>
-          </div>
-        </div>
 
+            <div class="card box-shadow descr text-center">
+              <a [href]="'/ingredient-page/' + ingredient.id">
+                <img [src]="'/assets/images/ingredients/125/' + ingredient.image" class="mb-1 mt-1">
+              </a>
+              <strong>{{ingredient.name}}</strong>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
-
   </div>
 </div>

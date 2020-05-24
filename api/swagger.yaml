@@ -147,6 +147,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Ingredient"
+  /ingredients/inGroups:
+    get:
+      tags:
+        - Ingredient
+      summary: Retrieves existent ingredients
+      operationId: getIngredientsInGroups
+      responses:
+        '200':
+          description: "List of all ingredients in groups"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/GroupedIngredients"
 
 # MODEL ----------------------------------------------------------------
 
@@ -254,6 +269,15 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CoctailIngredient"
+    GroupedIngredients:
+      type: object
+      properties:
+        groupName:
+          type: string
+        ingredients:
+          type: array
+          items:
+            $ref: "#/components/schemas/Ingredient"
   examples:
     login-success:
       value:

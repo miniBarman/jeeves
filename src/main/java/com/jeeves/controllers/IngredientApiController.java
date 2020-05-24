@@ -2,7 +2,9 @@ package com.jeeves.controllers;
 
 import com.jeeves.converters.ingredient.Ingredient4IngredientsDtoBiConverter;
 import com.jeeves.model.IngredientEntity;
+import com.jeeves.model.IngredientGroupEntity;
 import com.jeeves.openapi.api.IngredientApi;
+import com.jeeves.openapi.dto.GroupedIngredients;
 import com.jeeves.openapi.dto.Ingredient;
 import com.jeeves.repos.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.jeeves.constants.ApplicationConstants.SERVICE_PATH_pREFIX;
 
@@ -38,5 +44,23 @@ public class IngredientApiController implements IngredientApi {
     public ResponseEntity<Ingredient> getIngredientById(Integer ingredientId) {
         IngredientEntity ingredient = ingredientRepository.getOne(ingredientId);
         return new ResponseEntity<>(ingredient4IngredientsDtoBiConverter.entityToDto(ingredient), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<GroupedIngredients>> getIngredientsInGroups() {
+        List<IngredientEntity> ingredients = ingredientRepository.findAll();
+        Map<IngredientGroupEntity, List<IngredientEntity>> groupIngredients = ingredients.stream()
+                .collect(Collectors.groupingBy(x -> x.getIngredientGroupEntity(), Collectors.toList()));
+
+        List<GroupedIngredients> result = groupIngredients.entrySet().stream()
+                .sorted(Comparator.comparingInt(x -> x.getKey().getId()))
+                .map(x -> {
+                    GroupedIngredients groupedIngredients = new GroupedIngredients();
+                    groupedIngredients.setGroupName(x.getKey().getName());
+                    groupedIngredients.setIngredients(ingredient4IngredientsDtoBiConverter.entityListToDtoList(x.getValue()));
+                    return groupedIngredients;
+                }).collect(Collectors.toList());
+
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

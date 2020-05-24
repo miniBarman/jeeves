@@ -17,6 +17,7 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
+import { GroupedIngredients } from '../model/groupedIngredients';
 import { Ingredient } from '../model/ingredient';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -111,6 +112,38 @@ export class IngredientService implements IngredientServiceInterface {
 
 
         return this.httpClient.get<Array<Ingredient>>(`${this.configuration.basePath}/ingredients`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Retrieves existent ingredients
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getIngredientsInGroups(observe?: 'body', reportProgress?: boolean): Observable<Array<GroupedIngredients>>;
+    public getIngredientsInGroups(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GroupedIngredients>>>;
+    public getIngredientsInGroups(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GroupedIngredients>>>;
+    public getIngredientsInGroups(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+
+        return this.httpClient.get<Array<GroupedIngredients>>(`${this.configuration.basePath}/ingredients/inGroups`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

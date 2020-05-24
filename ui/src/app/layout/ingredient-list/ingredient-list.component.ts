@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Ingredient, IngredientService} from "../../@api-module";
+import {IngredientService} from "../../@api-module";
+import {IngredientsGroupsModel} from "./model/ingredients-groups-model";
 
 @Component({
   selector: 'app-ingredient-list',
@@ -10,7 +11,8 @@ export class IngredientListComponent implements OnInit {
 
   @Input()
   colsNum: number;
-  ingredients: Ingredient[][] = [];
+  // ingredients: Ingredient[][] = [];
+  ingredientsGroups: IngredientsGroupsModel[] = [];
   constructor(
     private ingredientService: IngredientService
   ) {
@@ -22,10 +24,13 @@ export class IngredientListComponent implements OnInit {
   }
 
   refreshData() {
-    this.ingredientService.getIngredients().subscribe(results => {
+    this.ingredientService.getIngredientsInGroups().subscribe(results => {
       if(results.length > 0) {
-        results.forEach(x => x.image = x.image.replace('/full/', '/95/'));
-        this.ingredients = results.reduce((prev, cur, i, a) => !(i % this.colsNum) ? prev.concat([a.slice(i, i + this.colsNum)]) : prev, []);
+        this.ingredientsGroups = [];
+        results.forEach(x => {
+          this.ingredientsGroups.push(new IngredientsGroupsModel(x.groupName,
+            x.ingredients.reduce((prev, cur, i, a) => !(i % this.colsNum) ? prev.concat([a.slice(i, i + this.colsNum)]) : prev, [])))
+        });
       }
     })
   }
