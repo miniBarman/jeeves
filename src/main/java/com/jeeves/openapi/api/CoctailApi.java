@@ -26,7 +26,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-24T15:10:22.455210800+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-27T23:26:03.106059300+03:00[Europe/Moscow]")
 
 @Validated
 @Api(value = "Coctail", description = "the Coctail API")
@@ -47,7 +47,7 @@ public interface CoctailApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 0, \"coctailIngredients\" : [ { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"ingredient\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }, \"id\" : 6 }, { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"ingredient\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }, \"id\" : 6 } ] }";
+                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -68,7 +68,7 @@ public interface CoctailApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 0, \"coctailIngredients\" : [ { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"ingredient\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }, \"id\" : 6 }, { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"ingredient\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }, \"id\" : 6 } ] }";
+                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

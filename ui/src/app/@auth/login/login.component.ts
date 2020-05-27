@@ -1,11 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
-import {AuthService} from "../../@api-module";
-import {UserModel} from "../model/user.model";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {MDBModalRef} from "angular-bootstrap-md";
 import {SessionStore} from "../state/session.store";
 import {UserAuthModel} from "../model/user-auth.model";
+import {AuthService} from "../../@api-module";
 
 @Component({
   selector: 'app-login',
@@ -56,7 +55,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.loginUser(userAuth).subscribe(user => {
       if(user) {
-        this.sessionStore.login({token: user.token, name: user.username});
+        this.sessionStore.login({token: user.token, name: user.username, userId: user.id});
       }
       this.modalRef.hide();
     }, (err) => {

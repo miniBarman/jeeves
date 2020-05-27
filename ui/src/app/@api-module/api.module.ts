@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './api/auth.service';
 import { CoctailService } from './api/coctail.service';
 import { IngredientService } from './api/ingredient.service';
+import { UserService } from './api/user.service';
 
 @NgModule({
   imports:      [],
@@ -14,7 +15,8 @@ import { IngredientService } from './api/ingredient.service';
   providers: [
     AuthService,
     CoctailService,
-    IngredientService ]
+    IngredientService,
+    UserService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {

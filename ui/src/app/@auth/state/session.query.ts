@@ -8,6 +8,7 @@ import { SessionStore, SessionState } from './session.store';
 export class SessionQuery extends Query<SessionState> {
   isLoggedIn$ = this.select((state) => toBoolean(state.token));
   name$ = this.select((state) => state.name);
+  userId$ = this.select((state) => state.userId);
 
   constructor(protected store: SessionStore) {
     super(store);

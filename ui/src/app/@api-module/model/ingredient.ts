@@ -18,6 +18,7 @@ export interface Ingredient {
     name?: string;
     description?: string;
     image?: string;
+    isInBar?: boolean;
     author?: User;
     coctailIngredients?: Array<CoctailIngredient>;
 }

@@ -12,6 +12,27 @@
             </a>
 
             <div class="card box-shadow descr text-center">
+              <div class="ingredient-btn-div" *ngIf="isLoggedIn">
+                <button
+                  class="btn btn-primary btn-sm pl-2 pr-2 ingredient-btn"
+                  *ngIf="!checkIfIngredientInBar(ingredient.id); else deleteButton"
+                  id="addToBar"
+                  (click)="addIngredientToBar(ingredient.id)"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+
+                <ng-template #deleteButton>
+                  <button
+                    class="btn btn-danger btn-sm pl-2 pr-2 ingredient-btn"
+                    id="deleteFromBar"
+                    (click)="deleteIngredientFromBar(ingredient.id)"
+                  >
+                    <i class="fas fa-times"></i>
+                  </button>
+                </ng-template>
+              </div>
+
               <a [href]="'/ingredient-page/' + ingredient.id">
                 <img [src]="'/assets/images/ingredients/125/' + ingredient.image" class="mb-1 mt-1">
               </a>

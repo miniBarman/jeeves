@@ -30,19 +30,22 @@ export interface IngredientServiceInterface {
      * Get ingredient by id
      * 
      * @param ingredientId Ingredient id to retrieve
+     * @param userId 
      */
-    getIngredientById(ingredientId: number, extraHttpRequestParams?: any): Observable<Ingredient>;
+    getIngredientById(ingredientId: number, userId?: number, extraHttpRequestParams?: any): Observable<Ingredient>;
 
     /**
      * Retrieves existent ingredients
      * 
+     * @param userId 
      */
-    getIngredients(extraHttpRequestParams?: any): Observable<Array<Ingredient>>;
+    getIngredients(userId?: number, extraHttpRequestParams?: any): Observable<Array<Ingredient>>;
 
     /**
      * Retrieves existent ingredients
      * 
+     * @param userId 
      */
-    getIngredientsInGroups(extraHttpRequestParams?: any): Observable<Array<GroupedIngredients>>;
+    getIngredientsInGroups(userId?: number, extraHttpRequestParams?: any): Observable<Array<GroupedIngredients>>;
 
 }

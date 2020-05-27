@@ -27,7 +27,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-24T15:10:22.455210800+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-27T23:26:03.106059300+03:00[Europe/Moscow]")
 
 @Validated
 @Api(value = "Ingredient", description = "the Ingredient API")
@@ -43,11 +43,11 @@ public interface IngredientApi {
     @RequestMapping(value = "/ingredients/{ingredientId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Ingredient> getIngredientById(@ApiParam(value = "Ingredient id to retrieve",required=true) @PathVariable("ingredientId") Integer ingredientId) {
+    default ResponseEntity<Ingredient> getIngredientById(@ApiParam(value = "Ingredient id to retrieve",required=true) @PathVariable("ingredientId") Integer ingredientId,@ApiParam(value = "") @Valid @RequestParam(value = "userId", required = false) Integer userId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }";
+                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"isInBar\" : true, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 0, \"coctailIngredients\" : [ { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } }, { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -64,11 +64,11 @@ public interface IngredientApi {
     @RequestMapping(value = "/ingredients",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<Ingredient>> getIngredients() {
+    default ResponseEntity<List<Ingredient>> getIngredients(@ApiParam(value = "") @Valid @RequestParam(value = "userId", required = false) Integer userId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }";
+                    String exampleString = "{ \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"isInBar\" : true, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 0, \"coctailIngredients\" : [ { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } }, { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -85,11 +85,11 @@ public interface IngredientApi {
     @RequestMapping(value = "/ingredients/inGroups",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<GroupedIngredients>> getIngredientsInGroups() {
+    default ResponseEntity<List<GroupedIngredients>> getIngredientsInGroups(@ApiParam(value = "") @Valid @RequestParam(value = "userId", required = false) Integer userId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"groupName\" : \"groupName\", \"ingredients\" : [ { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] }, { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } ] }";
+                    String exampleString = "{ \"groupName\" : \"groupName\", \"ingredients\" : [ { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"isInBar\" : true, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 0, \"coctailIngredients\" : [ { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } }, { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } } ] }, { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"isInBar\" : true, \"name\" : \"name\", \"description\" : \"description\", \"id\" : 0, \"coctailIngredients\" : [ { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } }, { \"volume\" : 5.962133916683182, \"unit\" : \"unit\", \"id\" : 6, \"coctail\" : { \"image\" : \"image\", \"author\" : { \"password\" : \"password\", \"id\" : 0, \"email\" : \"email\", \"username\" : \"username\" }, \"name\" : \"name\", \"recipe\" : \"recipe\", \"description\" : \"description\", \"id\" : 1, \"coctailIngredients\" : [ null, null ] } } ] } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -7,4 +7,7 @@ export * from './coctail.serviceInterface'
 export * from './ingredient.service';
 import { IngredientService } from './ingredient.service';
 export * from './ingredient.serviceInterface'
-export const APIS = [AuthService, CoctailService, IngredientService];
+export * from './user.service';
+import { UserService } from './user.service';
+export * from './user.serviceInterface'
+export const APIS = [AuthService, CoctailService, IngredientService, UserService];

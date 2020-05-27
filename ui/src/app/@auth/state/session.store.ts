@@ -4,12 +4,14 @@ import { Store, StoreConfig } from "@datorama/akita";
 export type SessionState = {
   token: string;
   name: string;
+  userId: number;
 }
 
 export function createInitialSessionState(): SessionState {
   return {
     token: null,
     name: null,
+    userId: null,
     ...getSession(),
   }
 }

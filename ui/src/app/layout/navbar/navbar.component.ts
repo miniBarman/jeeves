@@ -13,7 +13,6 @@ import {SessionStore} from "../../@auth/state/session.store";
 export class NavbarComponent implements OnInit {
   modalRef: MDBModalRef;
   name$: Observable<string>;
-  isLoggedIn$: Observable<boolean>;
   isLoggedIn: boolean;
 
   constructor(

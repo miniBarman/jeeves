@@ -56,15 +56,21 @@ export class IngredientService implements IngredientServiceInterface {
     /**
      * Get ingredient by id
      * @param ingredientId Ingredient id to retrieve
+     * @param userId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIngredientById(ingredientId: number, observe?: 'body', reportProgress?: boolean): Observable<Ingredient>;
-    public getIngredientById(ingredientId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Ingredient>>;
-    public getIngredientById(ingredientId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Ingredient>>;
-    public getIngredientById(ingredientId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getIngredientById(ingredientId: number, userId?: number, observe?: 'body', reportProgress?: boolean): Observable<Ingredient>;
+    public getIngredientById(ingredientId: number, userId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Ingredient>>;
+    public getIngredientById(ingredientId: number, userId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Ingredient>>;
+    public getIngredientById(ingredientId: number, userId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (ingredientId === null || ingredientId === undefined) {
             throw new Error('Required parameter ingredientId was null or undefined when calling getIngredientById.');
+        }
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+            queryParameters = queryParameters.set('userId', <any>userId);
         }
 
         let headers = this.defaultHeaders;
@@ -81,6 +87,7 @@ export class IngredientService implements IngredientServiceInterface {
 
         return this.httpClient.get<Ingredient>(`${this.configuration.basePath}/ingredients/${encodeURIComponent(String(ingredientId))}`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -91,13 +98,19 @@ export class IngredientService implements IngredientServiceInterface {
 
     /**
      * Retrieves existent ingredients
+     * @param userId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIngredients(observe?: 'body', reportProgress?: boolean): Observable<Array<Ingredient>>;
-    public getIngredients(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Ingredient>>>;
-    public getIngredients(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Ingredient>>>;
-    public getIngredients(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getIngredients(userId?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Ingredient>>;
+    public getIngredients(userId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Ingredient>>>;
+    public getIngredients(userId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Ingredient>>>;
+    public getIngredients(userId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+            queryParameters = queryParameters.set('userId', <any>userId);
+        }
 
         let headers = this.defaultHeaders;
 
@@ -113,6 +126,7 @@ export class IngredientService implements IngredientServiceInterface {
 
         return this.httpClient.get<Array<Ingredient>>(`${this.configuration.basePath}/ingredients`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -123,13 +137,19 @@ export class IngredientService implements IngredientServiceInterface {
 
     /**
      * Retrieves existent ingredients
+     * @param userId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getIngredientsInGroups(observe?: 'body', reportProgress?: boolean): Observable<Array<GroupedIngredients>>;
-    public getIngredientsInGroups(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GroupedIngredients>>>;
-    public getIngredientsInGroups(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GroupedIngredients>>>;
-    public getIngredientsInGroups(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getIngredientsInGroups(userId?: number, observe?: 'body', reportProgress?: boolean): Observable<Array<GroupedIngredients>>;
+    public getIngredientsInGroups(userId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<GroupedIngredients>>>;
+    public getIngredientsInGroups(userId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<GroupedIngredients>>>;
+    public getIngredientsInGroups(userId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let queryParameters = new HttpParams({encoder: this.encoder});
+        if (userId !== undefined && userId !== null) {
+            queryParameters = queryParameters.set('userId', <any>userId);
+        }
 
         let headers = this.defaultHeaders;
 
@@ -145,6 +165,7 @@ export class IngredientService implements IngredientServiceInterface {
 
         return this.httpClient.get<Array<GroupedIngredients>>(`${this.configuration.basePath}/ingredients/inGroups`,
             {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -35,19 +36,19 @@ public class IngredientApiController implements IngredientApi {
     }
 
     @Override
-    public ResponseEntity<List<Ingredient>> getIngredients() {
+    public ResponseEntity<List<Ingredient>> getIngredients(@Valid Integer userId) {
         List<IngredientEntity> ingredients = ingredientRepository.findAll();
         return new ResponseEntity<>(ingredient4IngredientsDtoBiConverter.entityListToDtoList(ingredients), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Ingredient> getIngredientById(Integer ingredientId) {
+    public ResponseEntity<Ingredient> getIngredientById(Integer ingredientId, @Valid Integer userId) {
         IngredientEntity ingredient = ingredientRepository.getOne(ingredientId);
         return new ResponseEntity<>(ingredient4IngredientsDtoBiConverter.entityToDto(ingredient), HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<List<GroupedIngredients>> getIngredientsInGroups() {
+    public ResponseEntity<List<GroupedIngredients>> getIngredientsInGroups(@Valid Integer userId) {
         List<IngredientEntity> ingredients = ingredientRepository.findAll();
         Map<IngredientGroupEntity, List<IngredientEntity>> groupIngredients = ingredients.stream()
                 .collect(Collectors.groupingBy(x -> x.getIngredientGroupEntity(), Collectors.toList()));

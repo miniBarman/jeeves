@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 /**
  * Ingredient
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-24T15:10:22.455210800+03:00[Europe/Moscow]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-27T23:26:03.106059300+03:00[Europe/Moscow]")
 
 public class Ingredient  implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -33,6 +33,9 @@ public class Ingredient  implements Serializable {
 
   @JsonProperty("image")
   private String image;
+
+  @JsonProperty("isInBar")
+  private Boolean isInBar;
 
   @JsonProperty("author")
   private User author;
@@ -121,6 +124,26 @@ public class Ingredient  implements Serializable {
     this.image = image;
   }
 
+  public Ingredient isInBar(Boolean isInBar) {
+    this.isInBar = isInBar;
+    return this;
+  }
+
+  /**
+   * Get isInBar
+   * @return isInBar
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Boolean getIsInBar() {
+    return isInBar;
+  }
+
+  public void setIsInBar(Boolean isInBar) {
+    this.isInBar = isInBar;
+  }
+
   public Ingredient author(User author) {
     this.author = author;
     return this;
@@ -185,13 +208,14 @@ public class Ingredient  implements Serializable {
         Objects.equals(this.name, ingredient.name) &&
         Objects.equals(this.description, ingredient.description) &&
         Objects.equals(this.image, ingredient.image) &&
+        Objects.equals(this.isInBar, ingredient.isInBar) &&
         Objects.equals(this.author, ingredient.author) &&
         Objects.equals(this.coctailIngredients, ingredient.coctailIngredients);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, image, author, coctailIngredients);
+    return Objects.hash(id, name, description, image, isInBar, author, coctailIngredients);
   }
 
   @Override
@@ -203,6 +227,7 @@ public class Ingredient  implements Serializable {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    isInBar: ").append(toIndentedString(isInBar)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    coctailIngredients: ").append(toIndentedString(coctailIngredients)).append("\n");
     sb.append("}");

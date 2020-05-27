@@ -73,6 +73,73 @@ paths:
         '200':
           description: "Ok response. You are now logged out"
 
+  # USER ----------------------------------------------------------
+  /user/barIngredients:
+    get:
+      tags:
+        - User
+      summary: Retrieves ingredients from user bar
+      operationId: getBarIngredients
+      parameters:
+        - name: userId
+          required: true
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "List of bar ingredients"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Ingredient"
+    put:
+      tags:
+        - User
+      summary: Retrieves ingredients from user bar
+      operationId: putBarIngredient
+      parameters:
+        - name: userId
+          required: true
+          in: query
+          schema:
+            type: integer
+        - name: ingredientId
+          required: true
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "List of bar ingredients"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Ingredient"
+    delete:
+      tags:
+        - User
+      summary: Delete ingredient from user bar
+      operationId: deleteBarIngredient
+      parameters:
+        - name: userId
+          required: true
+          in: query
+          schema:
+            type: integer
+        - name: ingredientId
+          required: true
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: "Successfully deleted ingredient from bar"
+
   # COCTAILS
 
   /coctails:
@@ -118,6 +185,12 @@ paths:
         - Ingredient
       summary: Retrieves existent ingredients
       operationId: getIngredients
+      parameters:
+        - name: userId
+          required: false
+          in: query
+          schema:
+            type: integer
       responses:
         '200':
           description: "List of all ingredients"
@@ -140,6 +213,11 @@ paths:
           description: "Ingredient id to retrieve"
           schema:
             type: integer
+        - name: userId
+          required: false
+          in: query
+          schema:
+            type: integer
       responses:
         '200':
           description: "return Void"
@@ -153,6 +231,12 @@ paths:
         - Ingredient
       summary: Retrieves existent ingredients
       operationId: getIngredientsInGroups
+      parameters:
+        - name: userId
+          required: false
+          in: query
+          schema:
+            type: integer
       responses:
         '200':
           description: "List of all ingredients in groups"
@@ -263,6 +347,8 @@ components:
           type: string
         image:
           type: string
+        isInBar:
+          type: boolean
         author:
           $ref: "#/components/schemas/User"
         coctailIngredients:
