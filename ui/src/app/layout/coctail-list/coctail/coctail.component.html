@@ -22,7 +22,7 @@
       <div class="ml-3 mr-3">
         <div *ngFor="let coctailIngredient of coctail.coctailIngredients">
           <b>
-            <a [href]="'/ingredient-page/' + coctailIngredient.id">
+            <a [href]="'/ingredient-page/' + coctailIngredient.ingredient.id">
               {{coctailIngredient.ingredient.name}}
             </a>
           </b>: {{coctailIngredient.volume}} {{coctailIngredient.unit}}
