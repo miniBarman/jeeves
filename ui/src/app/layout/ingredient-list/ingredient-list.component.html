@@ -6,10 +6,8 @@
       <div class="row justify-content-center" *ngFor="let ingredientRow of group.ingredients; last as isLast">
         <div class="pl-0 pr-0" *ngFor="let ingredient of ingredientRow">
 
-          <div class="card box-shadow ingredient-ico">
-            <a [href]="'/ingredient-page/' + ingredient.id">
-              <img [src]="'/assets/images/ingredients/95/' + ingredient.image">
-            </a>
+          <mdb-card [class]="checkIfIngredientInBar(ingredient.id) ? 'ingredient-ico blue-shadow' : 'ingredient-ico normal-shadow'">
+            <mdb-card-img [src]="'/assets/images/ingredients/95/' + ingredient.image"></mdb-card-img>
 
             <div class="card box-shadow descr text-center">
               <div class="ingredient-btn-div" *ngIf="isLoggedIn">
@@ -38,7 +36,7 @@
               </a>
               <strong>{{ingredient.name}}</strong>
             </div>
-          </div>
+          </mdb-card>
 
         </div>
       </div>

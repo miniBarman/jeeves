@@ -10,7 +10,6 @@ export class CoctailComponent implements OnInit {
 
   @Input()
   coctail: Coctail;
-  isTextContent = false;
   constructor() { }
 
   ngOnInit(): void {
