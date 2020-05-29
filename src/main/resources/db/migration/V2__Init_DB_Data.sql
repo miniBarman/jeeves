@@ -260,7 +260,7 @@ insert into INGREDIENTS (id, name, description, image, ingredient_group_entity_i
 insert into INGREDIENTS (id, name, description, image, ingredient_group_entity_id)
     values (nextval('INGREDIENT_SEQUENCE'), 'Сахарный сироп ', 'Самый распространенный коктейльный сироп производят из натурального экстракта сахарного тростника, смешанного с водой.', 'monin_sugar.jpg', 6);
 insert into INGREDIENTS (id, name, description, image, ingredient_group_entity_id)
-    values (nextval('INGREDIENT_SEQUENCE'), 'Медовый сироп ', 'Топовый сироп производят методом пастеризации натурального меда, разбавленного до нужной консистенции водой.', 'monin_honey.jpg', 5);
+    values (nextval('INGREDIENT_SEQUENCE'), 'Медовый сироп ', 'Топовый сироп производят методом пастеризации натурального меда, разбавленного до нужной консистенции водой.', 'monin_honey.jpg', 6);
 insert into INGREDIENTS (id, name, description, image, ingredient_group_entity_id)
     values (nextval('INGREDIENT_SEQUENCE'), 'Гренадин ', 'Популярный сироп производят методом пастеризации гранатового сока с добавлением соков других красных ягод, ванили и тростникового сахара.', 'monin_grenadin.jpg', 6);
 insert into INGREDIENTS (id, name, description, image, ingredient_group_entity_id)
