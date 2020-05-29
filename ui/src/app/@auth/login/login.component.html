@@ -18,6 +18,10 @@
       </mdb-error>
     </div>
 
+    <div class="login-error" *ngIf="loginError">
+      {{loginError}}
+    </div>
+
   </div>
   <div class="modal-footer d-flex justify-content-center">
     <button mdbBtn color="indigo" class="waves-light" mdbWavesEffect (click)="confirmOperation()">Войти</button>

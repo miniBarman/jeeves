@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   attemptedSubmit = false;
+  loginError: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit {
       }
       this.modalRef.hide();
     }, (err) => {
-      console.log(err);
+      this.loginError = 'Такая пара логин/пароль не существует'
     })
   }
 

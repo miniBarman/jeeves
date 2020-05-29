@@ -39,6 +39,10 @@
       </mdb-error>
     </div>
 
+    <div class="register-error" *ngIf="registerError">
+      {{registerError}}
+    </div>
+
   </div>
 
   <div class="modal-footer d-flex justify-content-center">

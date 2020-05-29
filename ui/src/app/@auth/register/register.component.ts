@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   attemptedSubmit = false;
+  registerError: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -73,7 +74,7 @@ export class RegisterComponent implements OnInit {
       }
       this.modalRef.hide();
     }, (err => {
-      console.log(err);
+      this.registerError = 'Такой пользователь уже существует';
     }))
   }
 
